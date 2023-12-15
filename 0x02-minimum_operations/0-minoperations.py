@@ -11,10 +11,11 @@ def minOperations(n):
     """
     if n <= 1:
         return 0
-    dp = [float('inf')] * (n + 1)
-    dp[0] = 0
-    for i in range(1, n + 1):
-        for j in range(1, i // 2 + 1):
-            if i % j == 0:
-                dp[i] = min(dp[i], dp[j], + 1 // j)
-    return dp[n] if dp[n] != float('inf') else 0
+    operations = 0
+    factor = 2
+    while n > 1:
+        while n % factor == 0:
+            operations += factor
+            n //= factor
+        factor += 1
+    return operations
